@@ -3,10 +3,12 @@ import Image from 'next/image'
 import { doc, getDoc } from "firebase/firestore";
 import { db, imageDB } from '@/firebase'
 import { getDownloadURL, ref } from 'firebase/storage';
+import { useRouter } from 'next/router';
 
 const NavBar = () => {
   const [user, setUser] = useState(null)
   const [imgURL, setImgURL] = useState(null)
+  const router = useRouter()
 
   const getUser = async() => { 
     const docRef = doc(db, "users", "abrar@gmail.com");
@@ -54,6 +56,7 @@ useEffect(()=>{
         alt='profile'
         width={50}
         height={50}
+        onClick={()=>router.push("/profile")}
         />
         </div> : null}
         <div></div>
